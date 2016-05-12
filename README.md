@@ -27,7 +27,7 @@ a `Object` if found and everything went OK. The return `Object` have the fields:
  * `term`: `<String>` a `|`-separated list of the terminal name and it's aliases.
  * `path`: `<String>` path to the terminfo file.
  * `capabilities`: `<Object>` object with the parsed capabilities. The values
-   from [`VARIABLES`](VARIABLES).
+   from [`VARIABLES`](#variables).
 
 Throws errors if:
 
