@@ -45,7 +45,7 @@ Todo
 -----
 
  * Return capabilities for the windows console if `process.platform ===
-   'win32'`.
+   'win32'`. (This is also added to `package.json`.)
  * Parse extended terminfo format. Current behavior is to silently ignore
    extra capabilities.
 
