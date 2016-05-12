@@ -24,7 +24,7 @@ function parse(opts) {
     }
 
     var bufferdata = require('./lib/openTerminfoBuffer.js')(term, opts);
-    var capabilities = require('./lib/parseTerminfo.js')(term, bufferdata.buffer);
+    var capabilities = require('./lib/parseTerminfo.js')(bufferdata.buffer, term);
     capabilities.path = bufferdata.path;
 
     return capabilities;
