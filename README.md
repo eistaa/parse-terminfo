@@ -21,13 +21,13 @@ This library exports two symbols:
       precedence.
 
 Search for and parse the terminfo file for a terminal. Returns the terminfo as
-a `Object` if found and everything went OK. The return `Object` have the fields:
+a object if found and everything went OK. The return object have the fields:
 
- * `description`: `<String>` first line of terminal description.
- * `term`: `<String>` a `|`-separated list of the terminal name and it's aliases.
+ * `description`: `<String>` first line of the terminal description.
+ * `term`: `<Array>` a list of the terminal name and any aliases.
  * `path`: `<String>` path to the terminfo file.
  * `capabilities`: `<Object>` object with the parsed capabilities. The values
-   from [`VARIABLES`](#variables).
+   from [`VARIABLES`](#variables-object).
 
 Throws errors if:
 
@@ -37,9 +37,9 @@ Throws errors if:
  * The terminal have no terminfo file.
  * If the magic number in the terminfo file is invalid.
 
-### `VARIABLES`
+### `VARIABLES <Object>`
 
-An `Object` of all terminfo variable names. Maps from long names to capnames.
+An object of all terminfo variable names. Maps from long names to capnames.
 
 Todo
 -----
