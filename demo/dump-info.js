@@ -1,4 +1,5 @@
 
-var terminfo = require('../index');
+var terminfo = require('../index'),
+    info     = terminfo.parse();
 
-console.log(terminfo.parse());
+console.log(info);
