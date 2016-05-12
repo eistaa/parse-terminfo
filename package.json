@@ -2,15 +2,22 @@
   "name": "parse-terminfo",
   "version": "0.0.0",
   "description": "Parse terminfo files",
+  "keywords": [
+      "terminfo", "terminal", "capabilities"
+  ],
   "license": "MIT",
-  "repository": "eistaa/parse-terminfo",
+  "files": [
+      "lib",
+      "index.js"
+  ],
+  "main": "index.js",
+  "repository": {
+        "type": "git",
+        "url": "https://github.com/eistaa/parse-terminfo.git"
+  },
   "author": {
-    "name": "Eivind Aarnæs",
+    "name": "Eivind Storm Aarnæs",
     "url": "https://github.com/eistaa"
   },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "dependencies": {
-  }
+  "os": [ "!win32" ]
 }
