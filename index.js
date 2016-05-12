@@ -10,7 +10,7 @@ function parse(opts) {
     if ( opts && opts.term ) {
         term = String(opts.term);
     } else {
-        if ( process.env.TERM ) {
+        if ( process.env.TERM && process.env.TERM !== '' ) {
             term = process.env.TERM;
         } else {
             throw new Error('No terminal specified (`opts.term`) and TERM is undefined');
