@@ -17,8 +17,11 @@ function parse(opts) {
         }
     }
 
-    var buf = require('./lib/openTerminfoBuffer.js')(term, opts);
-    return require('./lib/parseTerminfo.js')(term, buff);
+    var bufferdata = require('./lib/openTerminfoBuffer.js')(term, opts);
+    var capabilities = require('./lib/parseTerminfo.js')(term, bufferdata.buffer);
+    capabilities.path = bufferdata.path;
+
+    return capabilities;
 }
 
 module.exports = {
