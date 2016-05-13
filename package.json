@@ -1,6 +1,6 @@
 {
   "name": "parse-terminfo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Parse terminfo files",
   "keywords": [
       "terminfo", "terminal", "capabilities"
