@@ -7,7 +7,7 @@ Library for parsing compiled terminfo files.
 Usage
 -----
 
-To obtain terminfo descriptions use the [`parse()` function](#parse-opts)
+To obtain terminfo descriptions use the [`parse()` function](#parseopts)
 like this:
 ```js
 // get the description for the current terminal
