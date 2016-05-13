@@ -84,9 +84,25 @@ have the fields:
    `numbers`, and `strings`. Each object maps capnames (see
    [`VARIABLES`](#variables-object)) to values. Boolean values are all `true`.
 
-Throws errors if:
+The directory search order almost matches the order described in the man page
+`terminfo(5)`.
 
- * The platform is windows, (on TODO list).
+ 1. Any directories specified in `opts.directories`, in the given order.
+ 2. The directory specified in the enviroment variable `TERMINFO` if it exists.
+ 3. The user directory `$HOME/.terminfo` if it exists.
+ 4. Any directories specified in the enviroment variable `TERMINFO_DIRS` if
+    it exists, in the given order. Empty paths (` === ''`) are replaced by
+    `/etc/terminfo`.
+ 5. Otherwise the directories `/etc/terminfo`, `/lib/terminfo`, and
+    `/usr/share/terminfo` are searched in order.
+
+The first directory where a terminfo file matching the terminal name is used,
+if parsing that file fails the search doesn't continue.
+
+The function throws an error in the following cases:
+
+ * The platform is windows, (on TODO list). (`package.json` should prevent
+   windows use.)
  * No terminal specified (`opts.term`), and `TERM` is empty or doesn't exist.
  * If no search locations exists. Cannot be read counts as not existing.
  * The terminal have no terminfo file.
@@ -98,7 +114,7 @@ An object of all terminfo variable names. Maps from uppercase long names to
 capnames.
 
 Todo
------
+----
 
  * Return capabilities for the windows console if `process.platform ===
    'win32'`. (`package.json` should prevent windows use.)
