@@ -26,8 +26,9 @@ a object if found and everything went OK. The return object have the fields:
  * `description`: `<String>` first line of the terminal description.
  * `term`: `<Array>` a list of the terminal name and any aliases.
  * `path`: `<String>` path to the terminfo file.
- * `capabilities`: `<Object>` object with the parsed capabilities. The values
-   from [`VARIABLES`](#variables-object).
+ * `capabilities`: `<Object>` object with three sub-objects: `booleans`,
+   `numbers`, and `strings`. Each object maps capnames (see
+   [`VARIABLES`](#variables-object)) to values. Boolean values are all `true`.
 
 Throws errors if:
 
@@ -39,7 +40,8 @@ Throws errors if:
 
 ### `VARIABLES <Object>`
 
-An object of all terminfo variable names. Maps from long names to capnames.
+An object of all terminfo variable names. Maps from uppercase long names to
+capnames.
 
 Todo
 -----
