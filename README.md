@@ -11,24 +11,47 @@ To obtain terminfo descriptions use the [`parse()` function](#parseopts)
 like this:
 ```js
 // get the description for the current terminal
-var terminfo = require('terminfo').parse();
+var terminfo = require('parse-terminfo').parse();
 
 // get the description for xterm
-var terminfo = require('terminfo').parse({ term: 'xterm' });
+var terminfo = require('parse-terminfo').parse({ term: 'xterm' });
 
 // get the description for the current terminal while starting to search
 // in a specified directory
-var terminfo = require('terminfo').parse({
+var terminfo = require('parse-terminfo').parse({
     directories: '/my/custom/terminfo'
 });
 
-// get the description for xterm while starting to search in a specified
-// directory
-var terminfo = require('terminfo').parse({
+// get the description for xterm while starting to search in multiple
+// specified directory
+var terminfo = require('parse-terminfo').parse({
     term: 'xterm',
     directories: [ '/my/custom/terminfo', '/my/other/terminfo' ]
 });
 ```
+
+To lookup data from the terminfo you use the names from
+[VARIABLES](#variables-object). E.g.:
+```js
+var terminfo  = require('parse-terminfo').parse(),
+    VARIABLES = require('parse-terminfo').VARIABLES;
+
+// boolean: to lookup if "output to last column wraps cursor to next line"
+var am_flag = terminfo.booleans.has(VARIABLES.AUTO_RIGHT_MARGIN);
+
+// numbers: to lookup "maximum number of colors on screen"
+var number_colors;
+if ( terminfo.numbers.has(VARIABLES.MAX_COLORS) )
+    number_colors = terminfo.numbers[VARIABLES.MAX_COLORS];
+
+// strings: to lookup the keycode for the delete character
+var string_dch1;
+if ( terminfo.strings.has(VARIABLES.DELETE_CHARACTER) )
+    string_dch1 = terminfo.strings[VARIABLES.DELETE_CHARACTER];
+```
+
+Variable names are uppercase forms of the variable names from the `terminfo(5)`
+man page.
 
 See also the example file [`example/dump-info.js`](example/dump-info.js) for an
 example that prints the terminfo description for the current terminal similar
