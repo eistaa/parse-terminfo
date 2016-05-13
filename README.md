@@ -4,6 +4,36 @@ PARSE-TERMINFO
 
 Library for parsing compiled terminfo files.
 
+Usage
+-----
+
+To obtain terminfo descriptions use the [`parse()` function](#parse-opts)
+like this:
+```js
+// get the description for the current terminal
+var terminfo = require('terminfo').parse();
+
+// get the description for xterm
+var terminfo = require('terminfo').parse({ term: 'xterm' });
+
+// get the description for the current terminal while starting to search
+// in a specified directory
+var terminfo = require('terminfo').parse({
+    directories: '/my/custom/terminfo'
+});
+
+// get the description for xterm while starting to search in a specified
+// directory
+var terminfo = require('terminfo').parse({
+    term: 'xterm',
+    directories: [ '/my/custom/terminfo', '/my/other/terminfo' ]
+});
+```
+
+See also the example file [`example/dump-info.js`](example/dump-info.js) for an
+example that prints the terminfo description for the current terminal similar
+the `infocmp` program.
+
 API
 ---
 
@@ -14,14 +44,15 @@ This library exports two symbols:
  * `opts`: `<Object>` optional config object
     * `term`: `<String>` name of a terminal to lookup terminfo for. If missing
       the environment variable `TERM` is used.
-    * `dirs`: `<Array> | <String>` extra directories to search for terminfo
-      files. If it is a string it is interpreted as the path to the root of a
-      terminfo database directory hierarchy. If it is an array each array entry
-      is searched in order. Directories given here have the highest search
-      precedence.
+    * `directories`: `<Array> | <String>` extra directories to search for
+      terminfo files. If it is a string it is interpreted as the path to the
+      root of a terminfo database directory hierarchy. If it is an array each
+      array entry is searched in order. Directories given here have the highest
+      search precedence.
 
-Search for and parse the terminfo file for a terminal. Returns the terminfo as
-a object if found and everything went OK. The return object have the fields:
+Search for and parse the compiled terminfo file for a terminal. Returns the
+terminfo as a nested object if found and everything went OK. The return object
+have the fields:
 
  * `description`: `<String>` first line of the terminal description.
  * `term`: `<Array>` a list of the terminal name and any aliases.
@@ -47,7 +78,7 @@ Todo
 -----
 
  * Return capabilities for the windows console if `process.platform ===
-   'win32'`. (This is also added to `package.json`.)
+   'win32'`. (`package.json` should prevent windows use.)
  * Parse extended terminfo format. Current behavior is to silently ignore
    extra capabilities.
 
